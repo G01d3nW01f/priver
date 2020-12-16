@@ -17,6 +17,6 @@ Light Infomation Gathering for privilege escalation to Linux machine
 
 usage:
 
-binary file priver is upload to target machine after the reverse-shell
+upload the binary file to target machine after the reverse-shell
 
 and execute the priver ./priver
