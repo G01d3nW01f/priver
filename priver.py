@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 #import os
-import socket
+import telnetlib
 import re
 import sys
 
@@ -46,15 +46,17 @@ if reg != None:
 
 try:
 
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    s.connect((target_host,int(target_port)))
+    tn = telnetlib.Telnet(target_host,target_port)
+    
+    payload = b"GET system.ini\n"
 
-    payload = b"GET system.ini HTTP/1.1\n\n"
+    tn.write(payload)
 
-    s.send(payload)
-    res = s.recv(1024)
-    print(res.decode())
+    res = tn.read_all().decode('ascii')
+    
     print(res)
+   
+
 except:
 
     print("[!]Some Issue Occured")
